@@ -16,10 +16,6 @@ export default z.object({
         twitter: z.object({
             twitterAPIKey: z.string()
         }),
-        solana: z.object({
-            heliusSocketURL: z.string().url(),
-            maxQueuedMessages: z.number(),
-        })
     }),
 
     collector: z.object({
