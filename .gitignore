@@ -1,3 +1,4 @@
 node_modules/
 scratch/
 env.json
+dist/

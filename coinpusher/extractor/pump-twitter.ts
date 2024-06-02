@@ -1,3 +1,4 @@
+import type { Tweet } from "@coinpusher/collector/twitter"
 import type { UnsubscribeFn } from "@coinpusher/core/channel"
 import { database } from "@coinpusher/core/database"
 import { ZeroLatch } from "@coinpusher/core/latch"
@@ -10,7 +11,6 @@ import { SpamTransactionDispatcher } from "@coinpusher/core/solana/dispatch/spam
 import { TransactionEventParser } from "@coinpusher/core/solana/parse"
 import type { PumpBuyEvent } from "@coinpusher/core/solana/parse/event/pump/buy"
 import env from "@coinpusher/env"
-import { tweetChannel, type Tweet } from "@coinpusher/origin/twitter"
 import { PublicKey } from "@solana/web3.js"
 import axios from "axios"
 
@@ -23,7 +23,6 @@ export class PumpTwitterExtractor {
     private logger : Logger
     private minFollowerCount : number
     private latch : ZeroLatch
-    private unsubscribeFn : UnsubscribeFn
     private feeScaler : number
     private variant : string
 
@@ -42,10 +41,6 @@ export class PumpTwitterExtractor {
 
         this.latch = new ZeroLatch()
         this.logger = new Logger({ path: __filename })
-        this.unsubscribeFn = tweetChannel.subscribe(async tweet => {
-            this.latch.increment()
-            await this.onTweet(tweet)
-        })
     }
 
     private generateDiscordInfoLine(p : { name: string, value: string }) {
@@ -195,7 +190,6 @@ export class PumpTwitterExtractor {
     }
 
     async stop() {
-        this.unsubscribeFn()
         await this.latch.join()
     }
     

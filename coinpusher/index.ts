@@ -1,11 +1,8 @@
 import { database } from "@coinpusher/core/database"
 import { ZeroLatch } from "@coinpusher/core/latch"
 
-import { Collector as SolanaCollector } from "./collector/solana"
-import { Origin as SolanaOrigin } from "./origin/solana"
-import { TwitterOrigin } from "./origin/twitter"
-import { PumpTwitterExtractor } from "./extractor/pump-twitter"
-import env from "./env"
+import { Collector as TwitterCollector } from "./collector/twitter"
+
 
 interface RunTime {
     stop : () => Promise<void>
@@ -13,13 +10,7 @@ interface RunTime {
 
 const run = async () => {
     const runTimes : RunTime[] = [
-        //new SolanaOrigin(),
-
-        new TwitterOrigin(),
-
-        //new SolanaCollector(),
-
-        ...env.extractor.pumpTweet.variants.map(v => new PumpTwitterExtractor(v))
+        new TwitterCollector()
     ]
 
     const latch = new ZeroLatch(1)

@@ -1,5 +1,7 @@
 import { ZeroLatch } from "./latch"
 
+type Timer = ReturnType<typeof setInterval>
+
 export class Interval {
 
     private repeatIntervalMs: number

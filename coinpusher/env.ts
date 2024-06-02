@@ -9,16 +9,16 @@ export default z.object({
         solana: z.object({
             heliusAPIKey: z.string(),
             walletSecretKey: z.string(),
+        }),
+        twitter: z.object({
+            bearerToken: z.string(),
         })
     }),
 
-    origin: z.object({
-        twitter: z.object({
-            twitterAPIKey: z.string()
-        }),
-    }),
-
     collector: z.object({
+        twitter: z.object({
+            minFollowerCount: z.number()
+        }),
         solana: z.object({
             eventBatchSize: z.number(),
         }),

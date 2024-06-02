@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test"
+import { expect, test } from "@jest/globals"
 import { TransactionEventParser } from "@coinpusher/core/solana/parse"
 
 import tx2ex9mw from "./data/2ex9my-raydium-cp-initialize.json"
