@@ -9,6 +9,7 @@ import env from "@coinpusher/env";
 import { tokenProgramAddress } from "@coinpusher/core/solana/constant";
 import { z } from "zod";
 import { safeParseJSON } from "@coinpusher/core/json";
+import { broadcaster } from "@coinpusher/broadcast";
 
 export type CollectorEvent =
     SPLTokenCollectedEvent |
@@ -42,8 +43,6 @@ const openMessage = {
         transactionDetails: "full"
     }]
 }
-
-export const collectorEventChannel = new Channel<CollectorEvent>()
 
 export class Collector {
 
@@ -118,7 +117,7 @@ export class Collector {
 
             for(const engine of this.engines) {
                 for(const event of await engine.processEvents(this.eventBatch)) {
-                    collectorEventChannel.publish(event)        
+                    broadcaster.publish(event)        
                 }
             }
 

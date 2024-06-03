@@ -69,7 +69,7 @@ export class RaydiumV4InitializeEventParser {
                     quoteCapture = { mint: balance.mint, amount: balance.amount }
                 }
             } else if(innerInstruction.payload.type === "mintTo") {
-                if(parsed.mintAuthority === raydiumV4AuthorityAddress) {
+                if(parsed.mintAuthority === raydiumV4AuthorityAddress.toBase58()) {
                     liquidityMint = parsed.mint
                 }
             }

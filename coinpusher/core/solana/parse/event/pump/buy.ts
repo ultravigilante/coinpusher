@@ -7,7 +7,7 @@ export type PumpBuyEvent = {
     eventType: "pumpBuy",
     tokenMint: string,
     tokenAmount: bigint,
-    solAmount: bigint,
+    solanaAmount: bigint,
 }
 
 const buyInstructionID : Buffer = Buffer.from("66063d1201daebea", "hex")
@@ -70,7 +70,7 @@ export class PumpBuyParser {
             eventType: "pumpBuy",
             tokenMint: mintAddress,
             tokenAmount: tokenAmount,
-            solAmount: solanaAmount,
+            solanaAmount: solanaAmount,
         }
 
     }

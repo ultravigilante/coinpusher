@@ -16,6 +16,7 @@ export class RaydiumV4SwapInstructionBuilder {
         poolAddress: PublicKey,
         targetSide: "base" | "quote"
         amountIn: bigint,
+        minAmountOut: bigint
     }) : Promise<Optional<TransactionInstruction[],SwapInstructionBuildError>> {
 
         const poolAccount = await new RaydiumPoolAccountFinder()
@@ -55,7 +56,7 @@ export class RaydiumV4SwapInstructionBuilder {
         const tokenIn = new Token(TOKEN_PROGRAM_ID, currencyInMint, 0)
         const amountIn = new TokenAmount(tokenIn, params.amountIn)
         const tokenOut = new Token(TOKEN_PROGRAM_ID, currencyOutMint, 0)
-        const amountOut = new TokenAmount(tokenOut, 1)
+        const amountOut = new TokenAmount(tokenOut, params.minAmountOut)
 
         const instructions = await Liquidity.makeSwapInstructionSimple({
             connection: heliusRPCURL,

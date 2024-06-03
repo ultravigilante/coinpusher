@@ -60,9 +60,9 @@ export class RaydiumV4SwapEventParser {
 
             const parsed = innerInstruction.payload.value
             if(innerInstruction.payload.type === "transfer") {
-                if(parsed.source === poolBaseAddress) {
+                if(parsed.source === poolBaseAddress || parsed.destination === poolBaseAddress) {
                     baseAmount = parsed.amount
-                } else if(parsed.source === poolQuoteAddress) {
+                } else if(parsed.source === poolQuoteAddress || parsed.destination === poolQuoteAddress) {
                     quoteAmount = parsed.amount
                 }
             }

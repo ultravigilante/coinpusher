@@ -1,4 +1,4 @@
-import { expect, test } from "@jest/globals"
+import { expect, test } from "bun:test"
 import { TransactionEventParser } from "@coinpusher/core/solana/parse"
 
 import tx2ex9mw from "./data/2ex9my-raydium-cp-initialize.json"
@@ -89,12 +89,12 @@ test("3iySYF-raydium-v4-initialize", () => {
             transactionSignature: "3iySYFy1UruWQ4siaHxPhbc8dWm5aPNPocJ1b99WrpfB7bRstfmRkRjby8CCanJmWbeDMe2nXLHa5fERVg2iBrMM",
         },
         {
-            baseAmount: "79005359154",
+            baseAmount: BigInt("79005359154"),
             baseMintAddress: "So11111111111111111111111111111111111111112",
             eventType: "raydiumV4Initialize",
             liquidityTokenMintAddress: "Dc9YLQRvLezjonmjKshUjHd7Cta9td43dTXKNg3N6Z45",
             poolAddress: "HESQgfGdHxv8vHdJTdhKHFk5MAheXKavdDwz5PXEXPXa",
-            quoteAmount: "206900000000000",
+            quoteAmount: BigInt("206900000000000"),
             quoteMintAddress: "9WJXYDyMPrrzKHkjqtm6WefritTxkw36kjgzC42JukpW",
             tokenBaseVaultAddress: "HsgXqLiVB9o5n3StpZLrUtvYkRrRMmfZTKe4diW6fBYc",
             tokenQuoteVaultAddress: "CYf26n17ygCQCc6DLCph4ftMZRPcjzeZp69fp6neaZ5v",
@@ -176,10 +176,12 @@ test("5LcDnN-raydium-v4-swap-17-acc", () => {
     const events = parseTransaction(tx5LcDnN)
     expect(events).toStrictEqual([
         {
-            basePostBalance: "166890276120065149",
+            baseAmount: BigInt("2905164683341251"),
+            quoteAmount: BigInt("1000000000"),
+            basePostBalance: BigInt("166890276120065149"),
             eventType: "raydiumV4Swap",
             poolAddress: "3cPQaJqymFw9YsA839a95WgwfJC7tPxprBoEXD7qCkKj",
-            quotePostBalance: "58302448768",
+            quotePostBalance: BigInt("58302448768"),
             transactionSignature: "5LcDnN7C8mDiraLkpSSMauDRtxizER51GmwXE4pWHtp7Lu1N3t2GkRZRPfvxU3EJT8S79CVYD7KALf3mn7spCrrc",
         }
     ])
@@ -189,10 +191,12 @@ test("3xvqEw-raydium-v4-swap-18-acc", () => {
     const events = parseTransaction(tx3xvqEw)
     expect(events).toStrictEqual([
         {
-            basePostBalance: "477675767885588",
+            basePostBalance: BigInt("477675767885588"),
+            baseAmount: BigInt("192907333276906"),
+            quoteAmount: BigInt("30000000"),
             eventType: "raydiumV4Swap",
             poolAddress: "BgV3bDqHHmaMBb7rgNXdmZ4CVMH6yETuBuQqQ8CJJMMo",
-            quotePostBalance: "33876861",
+            quotePostBalance: BigInt("33876861"),
             transactionSignature: "3xvqEw5oMg8emePV9oMG8MFDWStaQBXVdu3xRDbdpD1b4mKFA3dMZwU53D6d7jzfxJ4kgSKbZUExMUQaQw5c1xaa",
         }
     ])
@@ -203,8 +207,8 @@ test("41Bg6X-pump-buy", () => {
     expect(events).toStrictEqual([
         {
             eventType: "pumpBuy",
-            solAmount: 13244934n,
-            tokenAmount: 364011419936n,
+            solanaAmount: BigInt("13244934"),
+            tokenAmount: BigInt("364011419936"),
             tokenMint: "4R4CLQXsm2aHXc31CDDMsYwdYEqYB9aW6vfgobW2u1Cw",
             transactionSignature: "41Bg6X4oueyRN62YW2acqxNKjTRg6gn4wGz8b2hHTWUCtmyrxRqSfVEGz6zDA2cmeY9rcwUrfGtRKeNRFwY4BQAb",
         }
@@ -216,8 +220,8 @@ test("rZSAoR-pump-sell", () => {
     expect(events).toStrictEqual([
         {
             eventType: "pumpSell",
-            solAmount: 702264256n,
-            tokenAmount: 19274301000000n,
+            solAmount: BigInt("702264256"),
+            tokenAmount: BigInt("19274301000000"),
             tokenMint: "4R4CLQXsm2aHXc31CDDMsYwdYEqYB9aW6vfgobW2u1Cw",
             transactionSignature: "rZSAoR98CnGCymqShKcKT5d7HtPB2pSchE64f3ZXmy11x9NDTytNHhZ3m7DJ6uu6D9JhhUwMpXGXsnVQ8fRRpF8",
         }

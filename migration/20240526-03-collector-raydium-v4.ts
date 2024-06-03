@@ -24,7 +24,7 @@ export const up = async (db : Kysely<any>) => {
 
     await db.schema
         .withSchema("collector")
-        .createIndex("collector_raydium_v4_address_idx")
+        .createIndex("collector_raydium_v4_pool_address_idx")
         .on("raydium_v4")
         .column("pool_address")
         .unique()

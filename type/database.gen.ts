@@ -41,51 +41,54 @@ export interface CollectorSplToken {
   updated_at: Generated<Timestamp>;
 }
 
-export interface ExtractorPumpTwitter {
+export interface CollectorTweet {
   created_at: Generated<Timestamp>;
   follower_count: number;
+  following_count: number;
   id: Generated<number>;
+  text: string;
+  twitter_author_id: string;
+  twitter_id: string;
+  username: string;
+}
+
+export interface CollectorTweetDexscreenerPoolAddress {
+  id: Generated<number>;
+  pool_address: string;
+  tweet_id: number;
+}
+
+export interface CollectorTweetPumpTokenMintAddress {
+  id: Generated<number>;
+  token_mint_address: string;
+  tweet_id: number;
+}
+
+export interface TradePump {
+  created_at: Generated<Timestamp>;
+  id: Generated<number>;
+  name: string;
   solana_buy_amount: Generated<Numeric>;
   token_buy_amount: Generated<Numeric>;
-  token_mint: string;
-  tweet_url: string;
-  variant: string;
+  token_mint_address: string;
 }
 
-export interface ExtractorShaxianRaydiumV4 {
-  buy_solana_amount: Generated<Numeric>;
-  buy_token_amount: Generated<Numeric>;
+export interface TradeRaydium {
   created_at: Generated<Timestamp>;
   id: Generated<number>;
-  is_token_base: boolean;
-  liquidity_burnt_at: Timestamp | null;
+  is_target_base: boolean;
+  name: string;
   pool_address: string;
-  sell_solana_amount: Generated<Numeric>;
-  sell_token_amount: Generated<Numeric>;
-  variant: string;
-}
-
-export interface ExtractorShaxianRaydiumV4Trade {
-  created_at: Generated<Timestamp>;
-  id: Generated<number>;
-  shaxian_raydium_v4_id: number;
-  transaction_signature: string;
-}
-
-export interface TweetScraperPumpMention {
-  created_at: Timestamp;
-  follower_count: number;
-  id: Generated<number>;
-  pump_mint_address: string;
-  tweet_id: string;
-  twitter_username: string;
+  solana_buy_amount: Generated<Numeric>;
+  token_buy_amount: Generated<Numeric>;
 }
 
 export interface DB {
   "collector.raydium_v4": CollectorRaydiumV4;
   "collector.spl_token": CollectorSplToken;
-  "extractor.pump_twitter": ExtractorPumpTwitter;
-  "extractor.shaxian_raydium_v4": ExtractorShaxianRaydiumV4;
-  "extractor.shaxian_raydium_v4_trade": ExtractorShaxianRaydiumV4Trade;
-  "tweet_scraper.pump_mention": TweetScraperPumpMention;
+  "collector.tweet": CollectorTweet;
+  "collector.tweet_dexscreener_pool_address": CollectorTweetDexscreenerPoolAddress;
+  "collector.tweet_pump_token_mint_address": CollectorTweetPumpTokenMintAddress;
+  "trade.pump": TradePump;
+  "trade.raydium": TradeRaydium;
 }

@@ -10,7 +10,7 @@ interface Updater {
 }
 
 export type RaydiumV4CollectedEvent = {
-    eventType: "RaydiumV4"
+    eventType: "raydiumV4"
     poolAddress: string
 }
 
@@ -40,7 +40,7 @@ export class RaydiumV4Engine {
 
         return rows.map(row => ({ 
             poolAddress: row.pool_address,
-            eventType: "RaydiumV4"
+            eventType: "raydiumV4"
         }))
     }
 
