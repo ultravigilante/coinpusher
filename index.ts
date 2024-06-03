@@ -1,7 +1,7 @@
 import { database } from "@coinpusher/core/database"
 import { ZeroLatch } from "@coinpusher/core/latch"
 
-import { Collector as TwitterCollector } from "./coinpusher/collector/twitter"
+import { Collector as TwitterCollector } from "@coinpusher/collector/twitter"
 import { Collector as SolanaCollector } from "@coinpusher/collector/solana"
 import { Extractor as AldonnaExtractor } from "@coinpusher/extractor/aldonna"
 import { Extractor as OomBarapExtractor } from "@coinpusher/extractor/oom-barap"
